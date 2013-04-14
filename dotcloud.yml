@@ -3,7 +3,7 @@ www:
     approot: app
     ports:
         www: http
-    process: hypnotoad -f app.pl
+    process: hypnotoad -f app.psgi
     requirements:
         - Plack
         - Plack::App::Proxy
