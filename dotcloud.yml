@@ -1,0 +1,11 @@
+www:
+    type: perl-worker
+    approot: app
+    ports:
+        www: http
+    process: hypnotoad -f app.pl
+    requirements:
+        - Plack
+        - Plack::App::Proxy
+        - Plack::Middleware::Header
+        - Plack::Middleware::RequestHeadersJSON

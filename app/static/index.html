@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Speak, bro</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" ></script>
+	<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.min.js" ></script>
+	<script type="text/javascript">
+		$(document).ready(function(){ $('#myform').validate(); });
+	</script>
+  </head>
+  <body>
+    <h1>Speak, bro</h1>
+
+    <form id="myform" action="/speak">
+      <input type="hidden" name="tl" value="en"/>
+      <textarea name="q" rows="2" cols="100" maxlength="100" class="required">I should have know better than to let you go alone.
+It's times like these I can't make it on my own</textarea><br/>
+      <input type="submit" name="submit" value="Give me the .mp3!"/>
+    </form>
+  </body>
+</html>
