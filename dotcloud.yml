@@ -1,9 +1,7 @@
 www:
     type: perl-worker
     approot: app
-    ports:
-        www: http
-    process: hypnotoad -f app.psgi
+    process: plackup -p 8080 app.psgi
     requirements:
         - Plack
         - Plack::App::Proxy
