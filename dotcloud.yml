@@ -8,4 +8,5 @@ www:
         - Plack
         - Plack::App::Proxy
         - Plack::Middleware::Header
-        - Plack::Middleware::RequestHeadersJSON
+        - Plack::Middleware::RequestHeaders
+        
