@@ -1,6 +1,6 @@
 ## Speak, bro
 
-This is a small psgi application, inspired in [falai-fera](https://github.com/danielfm/falai-fera), who transform a small text (less than 100 characters) in mp3 using google translate. It is pure-perl plack configuration.
+This is a small psgi application, inspired in [falai-fera](https://github.com/danielfm/falai-fera), who transform a small text (less than 100 characters) in mp3 using google translate text to speech experimental api. It is pure-perl plack configuration.
 
 ## Install
 
