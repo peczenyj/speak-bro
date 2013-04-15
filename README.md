@@ -24,6 +24,7 @@ or, install manually all deps using regular cpan
 You can use plackup or other psgi server like Starman
 
 	bash$ plackup app.psgi
+	HTTP::Server::PSGI: Accepting connections at http://0:5000/
 	
 ## How it works
 
@@ -69,6 +70,22 @@ You can follow this instructions: [Heroku buildpack perl](https://github.com/miy
 
 Try [here](http://speak-bro.herokuapp.com). Thanks @Lorn!
 
+### Dotcloud
+
+Soon...
+
 ## Final considerations
 
 This is a good example of using Plack applications and middlewares. It is easy to evolve and add other features and it is zero code, I'm just using a dsl to compose and configure other apps (all available in CPAN).
+
+## License
+
+This software is copyright (c) 2013 by Tiago Peczenyj.
+ 
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+## Thanks
+
+* Lorn, for helping me to deploy at heroku
+* Daniel Fernandes, for the inspiration
