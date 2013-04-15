@@ -10,7 +10,7 @@ You need install Plack and other dependencies, for example using [carton](https:
 
 or, using [cpanminus](https://metacpan.org/module/App::cpanminus)
 
-	bash$ cpanm -L local --installdeps .
+	bash$ cpanm --installdeps .
 	
 or, install manually all deps using regular cpan
 
