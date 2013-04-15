@@ -67,7 +67,7 @@ the `builder` subroutine create a [plack](https://metacpan.org/release/Plack) ap
 
 You can follow this instructions: [Heroku buildpack perl](https://github.com/miyagawa/heroku-buildpack-perl).
 
-Try [here](http://ancient-plateau-6546.herokuapp.com/). Thanks L0rn!
+Try [here](http://agile-savannah-6297.herokuapp.com). Thanks @Lorn!
 
 ## Final considerations
 
