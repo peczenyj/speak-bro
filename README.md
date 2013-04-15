@@ -4,9 +4,20 @@ This is a small psgi application, inspired in [falai-fera](https://github.com/da
 
 ## Install
 
-You need install Plack and other dependencies, for example if you use
+You need install Plack and other dependencies, for example using [carton](https://metacpan.org/module/Carton) (based on cpanfile)
 
-	bash$ cat Dependencies | cpanm
+	bash$ carton install
+
+or, using [cpanminus](https://metacpan.org/module/App::cpanminus)
+
+	bash$ cpanm -L local --installdeps .
+	
+or, install manually all deps using regular cpan
+
+* Plack
+* Plack::App::Proxy
+* Plack::Middleware::Header
+* Plack::Middleware::RequestHeaders
 	
 ## Running	
 
@@ -18,6 +29,7 @@ You can use plackup or other psgi server like Starman
 
 This app has two components: one static file (index.html) and one psgi file, who combine two apps and two middlewares. 
 
+	├── cpanfile
 	├── app.psgi
 	└── static
 	    └── index.html
@@ -48,6 +60,14 @@ this is the psgi file using [plack builder dsl](https://metacpan.org/module/Plac
 	}
 	
 the `builder` subroutine create a [plack](https://metacpan.org/release/Plack) application. In this case we combine two applications in different paths using the `mount` subroutine. The first path is "/" and we use [Plack::App::File](https://metacpan.org/module/Plack::App::File) to serve the index.html (this application is part of Plack implementation). The second path, "/speak", use another application, [Plack::App::Proxy](https://metacpan.org/module/Plack::App::Proxy), to receive the request submit from index.html and proxy to google translate text to speech experimental api. The google api hates requests from other sites and returns a 403, but using [Plack::Middleware::RequestHeaders](https://metacpan.org/module/Plack::Middleware::RequestHeaders) we can remove the `Referer` header. In the end, we use the [Plack::Middleware::Header](https://metacpan.org/module/Plack::Middleware::Header) middleware to set two headers: `Content-Disposition` to act as a download and `Content-Type` to add a .mp3 extension.
+
+## Deploy
+
+### Heroku 
+
+You can follow this instructions: [Heroku buildpack perl](https://github.com/miyagawa/heroku-buildpack-perl).
+
+Try [here](http://ancient-plateau-6546.herokuapp.com/)
 
 ## Final considerations
 
