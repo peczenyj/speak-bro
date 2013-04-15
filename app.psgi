@@ -8,6 +8,7 @@ use Plack::Middleware::GoogleAnalytics;
 builder { 
 	mount "/"      => builder {
 	  enable "Plack::Middleware::GoogleAnalytics", ga_id => 'UA-2150536-5';
+	  
 	  Plack::App::File->new(file => "./static/index.html")
 	};
 	mount "/speak" => builder {
