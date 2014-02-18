@@ -16,7 +16,12 @@
     <h1>Speak, bro</h1>
 
     <form id="myform" action="/speak">
-      <input type="hidden" name="tl" value="en"/>
+      <p>Language: <select name="tl">
+          <option value="en" selected="selected">English</option>
+          <option value="pt">Portugues</option>
+          <option value="fr">Français</option>
+        </select>
+      </p> 
       <textarea name="q" rows="2" cols="100" maxlength="100" class="required">I should have know better than to let you go alone.
 It's times like these I can't make it on my own</textarea><br/>
       <input type="submit" name="submit" value="Give me the .mp3!"/>

@@ -10,7 +10,7 @@ builder {
 		enable 'RequestHeaders', unset => [ "Referer" ];
 		enable 'Header', set => [
 			"Content-Type" => "audio/mp3", 
-			"Content-Disposition" => "attachment" 
+			"Content-Disposition" => "attachment; filename=speak.mp3" 
 		];
 
 		Plack::App::Proxy->new(remote => "http://translate.google.com/translate_tts")

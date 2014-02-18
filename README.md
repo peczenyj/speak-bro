@@ -10,7 +10,7 @@ You need install Plack and other dependencies, for example using [carton](https:
 
 or, using [cpanminus](https://metacpan.org/module/App::cpanminus)
 
-	bash$ cpanm --installdeps .
+	bash$ cpanm -n Plack Plack::App::Proxy Plack::Middleware::Header Plack::Middleware::RequestHeaders
 	
 or, install manually all deps using regular cpan
 
@@ -37,16 +37,18 @@ This app has two components: one static file (index.html) and one psgi file, who
 
 this is the relevant html (just a form to /speak with a hidden input `tl` and a textarea `q`)
 
+```html
 	<form id="myform" action="/speak">
 		<input type="hidden" name="tl" value="en"/>
 		<textarea name="q" rows="2" cols="100" maxlength="100" class="required">I should have know better than to let you go alone.
 	It's times like these I can't make it on my own</textarea><br/>
 		<input type="submit" name="submit" value="Give me the .mp3!"/>
 	</form>
-
+```
 
 this is the psgi file using [plack builder dsl](https://metacpan.org/module/Plack::Builder):
 
+```perl
 	builder { 
 		mount "/"      => Plack::App::File->new(file => "./static/index.html");
 		mount "/speak" => builder {
@@ -59,7 +61,8 @@ this is the psgi file using [plack builder dsl](https://metacpan.org/module/Plac
 			Plack::App::Proxy->new(remote => "http://translate.google.com/translate_tts")
 		}
 	}
-	
+```
+
 the `builder` subroutine create a [plack](https://metacpan.org/release/Plack) application. In this case we combine two applications in different paths using the `mount` subroutine. The first path is `/` and we use [Plack::App::File](https://metacpan.org/module/Plack::App::File) to serve the index.html (this application is part of Plack implementation). The second path, `/speak`, use another application, [Plack::App::Proxy](https://metacpan.org/module/Plack::App::Proxy), to receive the request submit from index.html and proxy to google translate text to speech experimental api. The google api hates requests from other sites and returns a 403, but using [Plack::Middleware::RequestHeaders](https://metacpan.org/module/Plack::Middleware::RequestHeaders) we can remove the `Referer` header. In the end, we use the [Plack::Middleware::Header](https://metacpan.org/module/Plack::Middleware::Header) middleware to set two headers: `Content-Disposition` to act as a download and `Content-Type` to add a .mp3 extension.
 
 ## Deploy
